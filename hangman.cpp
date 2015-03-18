@@ -1,9 +1,3 @@
-//Hangman program
-//This is a beginning of a two player
-//game where we will have one player
-//enter in a phrase and the other will
-//guess at the contents of that phrase
-
 #include <iostream>
 using namespace std;
 #include <cstring>
@@ -32,7 +26,6 @@ int main()
     char players_guess;
     int score = 0;
     
-    //MANAGE MY PROGRAM HERE....
     welcome();  //call the welcome function
     do
     {
@@ -58,7 +51,6 @@ int main()
     return 0;
 }
 
-//Function Declarations
 
 //This function will explain the rules of the game
 void welcome()
@@ -76,13 +68,12 @@ void get_original(char original[])
     do
     {
         cout << "Please enter a phrase: ";
-        //cin >> original //limited to just one word
         cin.get(original, SIZE, '\n');
         cin.ignore(100,'\n');
         
         //echo the phrase entered:
         cout <<"Your phrase is: " <<original <<endl;
-        cout <<"Would you like to re-enter it? Y or N: ";
+        cout <<"Would you like to re-enter it? (Y or N) ";
         cin >>response;
         cin.ignore(100,'\n');
     }while(toupper(response) == 'Y');
@@ -96,7 +87,7 @@ void get_original(char original[])
 //there is a non-blank character. Stop at the '\0'
 void create_answer(char source[], char result[])
 {
-    int length = strlen(source); //"hi" -> 2
+    int length = strlen(source);
     
     for (int i=0; i < length; ++i)
     {
@@ -112,7 +103,7 @@ void create_answer(char source[], char result[])
 //each character for readability
 void display(char answer[], int score)
 {
-    int length = strlen(answer); //"hi" -> 2
+    int length = strlen(answer);
     
     for (int i=0; i < length; ++i)
     {
@@ -133,10 +124,9 @@ char guess()
     return input;
 }
 
-//Check for a match and update the answer
-//array if there is a match
-//This function returns true if the guess exists
-//anywhere in the "key" array, otherwise false
+//Check for a match and update the answer if there is a match
+//This function returns true if the guess exists anywhere
+//in the "key" array, otherwise false
 //If there is a match, the corresponding index
 //in the "answer" array will set to that character
 bool match(char guess, char answer[], char key[])
@@ -175,12 +165,12 @@ bool done(int score, char answer[], char key[])
     return finished;
 }
 
-//Do you want to do this again? Yes or no!
+//Do you want to do this again?
 //Returns true if yes, false otherwise
 bool again()
 {
     bool yes = false;//play again?
-    char response = 'n'; //user's response
+    char response = 'n';
     
     cout <<"Would you like to play again? Y or N ";
     cin >> response;
